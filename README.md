@@ -1,20 +1,9 @@
-#!/bin/bash
-
-# README Generator for Driver Management System
-
-# Configuration
-PROJECT_NAME="Driver Management System"
-REPO_URL="[https://github.com/yourusername/driver-management](https://github.com/3bda1137/Air-liquide.git)"
-DB_TYPE="SQL Server"# 
-
-# Create README.md
-cat > README.md << EOL
-# ${PROJECT_NAME}
+# Driver Management System
 
 ![.NET Core](https://img.shields.io/badge/.NET-7.0-blue)
 ![Docker](https://img.shields.io/badge/Docker-✓-blue)
 ![CQRS](https://img.shields.io/badge/Architecture-CQRS_Vertical_Slices-green)
-![DB](https://img.shields.io/badge/Database-${DB_TYPE}-blue)
+![DB](https://img.shields.io/badge/Database-SQL Server-blue)
 
 ## Table of Contents
 1. [Features](#features)
@@ -43,8 +32,9 @@ cat > README.md << EOL
 - Swagger API documentation
 
 ## Architecture
+
 ### Vertical Slice Structure
-\`\`\`
+```
 src/
 ├── Application/
 │   └── Features/
@@ -56,52 +46,54 @@ src/
 ├── Domain/
 ├── Infrastructure/
 └── Web/
-\`\`\`
+```
 
 ### CQRS Flow
-\`\`\`mermaid
+```mermaid
 graph TD
     A[API Endpoint] --> B[Command/Query]
     B --> C[MediatR Handler]
     C --> D[Repository]
     D --> E[Database]
-\`\`\`
+```
 
 ## Tech Stack
-| Component       | Technology           |
-|-----------------|----------------------|
-| Backend         | .NET 9              |
-| Database        | ${DB_TYPE}          |
+| Component       | Technology             |
+|-----------------|-----------------------|
+| Backend         | .NET 9                |
+| Database        | SQL Server            |
 | ORM             | Entity Framework Core |
-| Container       | Docker              |
+| Container       | Docker                |
 
 ## API Endpoints
-| Endpoint          | Method | Description               |
-|-------------------|--------|---------------------------|
-| /api/drivers     | POST   | Create new driver        |
-| /api/drivers     | GET    | List drivers (paginated) |
-| /api/drivers/{id}| GET    | Get driver by ID         |
-| /api/drivers/{id}| PUT    | Update driver            |
-| /api/drivers/{id}| DELETE | Soft delete driver       |
+| Endpoint           | Method | Description               |
+|--------------------|--------|---------------------------|
+| /api/drivers       | POST   | Create new driver         |
+| /api/drivers       | GET    | List drivers (paginated)  |
+| /api/drivers/{id}  | GET    | Get driver by ID          |
+| /api/drivers/{id}  | PUT    | Update driver             |
+| /api/drivers/{id}  | DELETE | Soft delete driver        |
 
 ## Getting Started
+
 ### Prerequisites
 - .NET 7 SDK
 - Docker Desktop
-- ${DB_TYPE}
+- SQL Server
 
 ### Installation
-\`\`\`bash
-git clone ${REPO_URL}
-cd driver-management
+```bash
+git clone https://github.com/3bda1137/Air-liquide.git
+cd Air-liquide
 docker-compose up -d
 dotnet ef database update
 dotnet run
-\`\`\`
+```
 
 ## Development
+
 ### Common Commands
-\`\`\`bash
+```bash
 # Run with hot reload
 dotnet watch run
 
@@ -110,11 +102,12 @@ dotnet ef migrations add <name>
 
 # Apply migrations
 dotnet ef database update
-\`\`\`
+```
 
 ## Testing
+
 ### Run Tests
-\`\`\`bash
+```bash
 # Unit tests
 dotnet test test/UnitTests
 
@@ -123,13 +116,14 @@ dotnet test test/IntegrationTests
 
 # With coverage
 dotnet test --collect:"XPlat Code Coverage"
-\`\`\`
+```
 
 ## Deployment
+
 ### Docker
-\`\`\`bash
+```bash
 docker-compose -f docker-compose.prod.yml up -d --build
-\`\`\`
+```
 
 ## Contributing
 1. Fork the repository
@@ -140,6 +134,3 @@ docker-compose -f docker-compose.prod.yml up -d --build
 
 ## License
 MIT
-EOL
-
-echo "✅ README.md generated successfully"
